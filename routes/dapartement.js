@@ -4,7 +4,7 @@ const {getLoggerUser,} = require('../helper/user_permission');
 const Departement = require('../models/departementModel');
 
 
-router.get("/departement", async (req, res) => {
+router.get("/departements", async (req, res) => {
     try {
       const departements = await Departement.find({}); 
   
@@ -45,7 +45,7 @@ router.get("/departement", async (req, res) => {
   });
   
   // update a accident
-  router.put("/accidents/:id", async (req, res) => {
+  router.put("/departements/:id", async (req, res) => {
     const user = await getLoggerUser(req.userId);
 
     if (!req.isAuth ) {

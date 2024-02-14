@@ -6,10 +6,17 @@ const userRoutes = require("./routes/users");
 const departementRoutes = require("./routes/dapartement");
 const ofRoutes = require("./routes/of");
 const sessionRoutes = require("./routes/session");
-const isAuth = require(".//middlewares/is-auth");
+const productRoutes = require("./routes/product");
+const defautsRoutes = require("./routes/defaut");
+
+
+
+const isAuth = require("./middlewares/is-auth");
 const path = require("path");
 
+
 const cookieParser = require("cookie-parser");
+
 
 const cors = require("cors");
 const OF = require("./models/ofModel");
@@ -29,6 +36,10 @@ app.use("/api", userRoutes);
 app.use("/api", sessionRoutes);
 app.use("/api", ofRoutes);
 app.use("/api", departementRoutes);
+app.use("/api", productRoutes);
+app.use("/api", defautsRoutes);
+
+
 app.use("/", ofRoutes);
 
 /*
@@ -40,7 +51,6 @@ app.get("*", (req, res) => {
 
 */
 
-
 app.get("/of", async (req, res) => {
   try {
     const ofs = await OF.find({});
@@ -51,10 +61,9 @@ app.get("/of", async (req, res) => {
 });
 
 
-
-
 // mongoose cloud
 // mongodb+srv://emkatech:EE06BC23F2@devgafsaapi.mkcickp.mongodb.net/api?retryWrites=true&w=majority'
+
 mongoose.set("strictQuery", false);
 mongoose
   .connect("mongodb://mongo:27017/cqualitedb", {
